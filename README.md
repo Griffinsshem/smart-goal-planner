@@ -1,36 +1,143 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 💡 Smart Goal Planner
 
-## Getting Started
+This is a single-page interactive React component (`GoalPlanner`) that allows users to manage personal financial goals. Users can add savings goals, make deposits toward them, view progress visually, and delete goals no longer needed. The app connects to a simple backend (`json-server` or Express) for full CRUD functionality.
 
-First, run the development server:
+---
 
-```bash
+## ✨ Features
+
+- Add new financial goals (name, target amount, category, deadline)
+- Make deposits toward specific goals
+- View progress with animated progress bars
+- Delete goals from the list
+- Automatically reloads goals on each operation
+- Clean and minimal form-based UI
+- Fetches data from a RESTful API (`localhost:3001/goals`)
+
+---
+
+## 🧱 Technologies Used
+
+- **React** – Functional components + Hooks
+- **Fetch API** – For data fetching
+- **CSS** – Basic styles in `globals.css`
+- **json-server or Express** – For a local REST API
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the project
+
+`
+git clone https://github.com/yourusername/smart-goal-planner.git
+cd smart-goal-planner
+`
+
+### 2.Install dependencies
+`
+npm install
+`
+
+### 3.Start the frontend
+`
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4. Start the backend (json-server)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+#### Install and start json-server if not using Express:
+`
+npm install -g json-server
+`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### Create a file db.json:
+`
+{
+  "goals": []
+}
+`
 
-## Learn More
+- Start the server:
+`
+json-server --watch db.json --port 3001
+`
 
-To learn more about Next.js, take a look at the following resources:
+    The API will now be available at http://localhost:3001/goals
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🧾 API Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Each goal object should have this structure:
+`
+{
+  "id": 1,
+  "name": "Vacation",
+  "targetAmount": 2000,
+  "savedAmount": 500,
+  "category": "Travel",
+  "deadline": "2025-12-31",
+  "createdAt": "2025-07-20"
+}
+`
 
-## Deploy on Vercel
+## Endpoints Used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+GET	/goals	Fetch all goals
+POST	/goals	Create a new goal
+PUT	/goals/:id	Update a goal (e.g., deposit)
+DELETE	/goals/:id	Delete a goal
+
+## 🧠 Component Overview
+🧩 GoalPlanner Logic
+
+    useEffect loads goals on initial mount.
+
+    handleAddGoal() posts a new goal and refreshes the list.
+
+    handleDeposit() fetches the goal, adds to savedAmount, and updates it via PUT.
+
+    handleDelete(id) deletes a goal and refreshes.
+
+    calculateProgress(saved, target) calculates progress percentage for the progress bar.
+
+🖼 UI Layout
+
+    Add New Goal – Text/number/date inputs + submit button
+
+    Make Deposit – Select dropdown and input
+
+    Goals Display – Title, saved/target amount, animated progress bar, deadline, and delete button
+
+🧪 Testing
+
+No test setup is provided by default. You may integrate:
+
+    Jest – for unit testing logic
+
+    React Testing Library – for UI interaction tests
+
+🛠 Future Enhancements
+
+    Add user authentication (e.g. Firebase)
+
+    Support goal editing
+
+    Add filtering by category or deadline
+
+    Notifications/reminders for upcoming deadlines
+
+    Persist data to real database (e.g., MongoDB)
+
+📄 License
+
+This component is open-source under the MIT License.
+📬 Contact
+
+Have questions or suggestions?
+
+    Email: [griffinsshem254@gmail.com]
+
+    GitHub: https://github.com/griffinsshem
+
+
