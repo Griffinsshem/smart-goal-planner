@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import './globals.css';
 
-const API_URL = 'http://localhost:3001/goals';
+const API_URL = 'https://goal-planner-backend.onrender.com';
 
 function GoalPlanner() {
   const [goals, setGoals] = useState([]);
