@@ -287,7 +287,7 @@ function GoalPlanner() {
             {/* Delete Button */}
             <button
               onClick={() => handleDelete(goal.id)}
-              className="flex items-center gap-2 text-red-600 hover:text-red-800"
+              className="flex items-center gap-2 bg-red text-red-600 hover:text-red-800"
             >
               <Trash2 size={18} /> Delete
             </button>
